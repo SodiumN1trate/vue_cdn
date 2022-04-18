@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tests</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2.6.14/dist/vue.js"></script>
+        <script
+                src="https://code.jquery.com/jquery-3.6.0.min.js"
+                integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+                crossorigin="anonymous"
+        ></script>
+        <script src="vue/Store/index.js"></script>
+        <script src="vue/Views/Login.js"></script>
+        <script src="vue/Views/Home.js"></script>
+        <script src="vue/Views/404.js"></script>
+        <meta charset="UTF-8">
+    </head>
+
+    <body>
+        <h1>Mājaslapa</h1>
+        <div id="app">
+
+        </div>
+
+        <script>
+            const routes = {
+                '/': Home,
+                '/login': Login
+            }
+
+            new Vue({
+                el: '#app',
+                data: {
+                    currentRoute: window.location.pathname
+                },
+                computed: {
+                    ViewComponent () {
+                        return routes[this.currentRoute] || notFound
+                    }
+                },
+                render (h) { return h(this.ViewComponent) }
+            })
+
+        </script>
+    </body>
+
+</html>
+
+
+<style>
+    button {
+        padding: 15px;
+    }
+</style>
